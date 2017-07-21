@@ -1,15 +1,19 @@
 package cloudtorrent.techxpose.co.cloudtorrent;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -19,11 +23,11 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity {
-
+    final Context context = this;
     WebView webview;
     ProgressBar bar;
      AdView mAdView;
-    String modUrl;
+    String modUrl = "http://www.m.ptuexam.com/LoginMe.aspx";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -35,6 +39,50 @@ public class MainActivity extends AppCompatActivity {
         webview.setWebViewClient(new myclient());
 
         CookieManager.getInstance().setAcceptCookie(true);
+
+
+        //dialog-------------------------------------------
+        LayoutInflater li = LayoutInflater.from(context);
+        View promptsView = li.inflate(R.layout.prompts, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+
+
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setView(promptsView);
+
+        final EditText userInput = (EditText) promptsView
+                .findViewById(R.id.editTextDialogUserInput);
+
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // get user input and set it to result
+                                // edit text
+
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+
+        //---------------------------------------------dialog
+
+
+
+
         //advertisement------------------------------------------
 
 
@@ -54,17 +102,18 @@ public class MainActivity extends AppCompatActivity {
         settings.setDomStorageEnabled(true);
 
         //webview.getSettings().setJavaScriptEnabled(true);
-        webview.loadUrl("http://www.m.ptuexam.com/LoginMe.aspx");
+        webview.loadUrl(modUrl);
 
     }
     public  class myclient extends WebViewClient
     {
 
-//jhgjhjhjsjhdvhivdhkhjkfjdj
+
 
         @Override
         public void onPageFinished(WebView view, String url) {
            modUrl=url.toString();
+            Toast.makeText(MainActivity.this, modUrl, Toast.LENGTH_SHORT).show();
 
             super.onPageFinished(view, url);
             bar.setVisibility(View.GONE);
