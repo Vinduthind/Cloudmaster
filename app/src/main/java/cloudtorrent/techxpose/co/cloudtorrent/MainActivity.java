@@ -13,6 +13,7 @@ import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     WebView webview;
     ProgressBar bar;
      AdView mAdView;
+    String current_roll,replace_roll;
+    Button friend_result_button;
     String modUrl = "http://www.m.ptuexam.com/LoginMe.aspx";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         webview = (WebView)findViewById(R.id.webview);
         bar =(ProgressBar)findViewById(R.id.Bar);
         webview.setWebViewClient(new myclient());
-
+        friend_result_button=(Button)findViewById(R.id.friend_result_button);
         CookieManager.getInstance().setAcceptCookie(true);
 
 
@@ -52,8 +55,14 @@ public class MainActivity extends AppCompatActivity {
         // set prompts.xml to alertdialog builder
         alertDialogBuilder.setView(promptsView);
 
-        final EditText userInput = (EditText) promptsView
+        final EditText current_roll_field = (EditText) promptsView
                 .findViewById(R.id.editTextDialogUserInput);
+
+        final EditText replace_roll_field = (EditText) promptsView
+                .findViewById(R.id.editTextDialogUserInput2);
+
+
+
 
         alertDialogBuilder
                 .setCancelable(false)
@@ -62,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog,int id) {
                                 // get user input and set it to result
                                 // edit text
+                            current_roll= current_roll_field.getText().toString();
+                            replace_roll = replace_roll_field.getText().toString();
+                                String newString = modUrl.replace(current_roll, replace_roll);
+                                webview.loadUrl(newString);
 
                             }
                         })
@@ -73,10 +86,23 @@ public class MainActivity extends AppCompatActivity {
                         });
 
         // create alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
+        final AlertDialog alertDialog = alertDialogBuilder.create();
 
-        // show it
-        alertDialog.show();
+
+
+        friend_result_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // show it
+                alertDialog.show();
+
+            }
+        });
+
+
+
+
 
         //---------------------------------------------dialog
 

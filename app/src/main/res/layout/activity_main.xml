@@ -41,8 +41,17 @@
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-7426325861660851/3421051725"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_toStartOf="@+id/button4">
     </com.google.android.gms.ads.AdView>
+
+    <Button
+        android:id="@+id/friend_result_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:text="Friend result"
+        android:layout_alignTop="@+id/adView"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>
