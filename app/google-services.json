@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "352034998737",
+    "firebase_url": "https://pturesult-fa4b9.firebaseio.com",
+    "project_id": "pturesult-fa4b9",
+    "storage_bucket": "pturesult-fa4b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352034998737:android:70afcdc1619aa2d4",
+        "android_client_info": {
+          "package_name": "cloudtorrent.techxpose.co.cloudtorrent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352034998737-kh7k81nc7gtsue3k641hu3gh821me8sk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfDwSELP2-vMI1brrjW_Le_2P74HuM9rE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
