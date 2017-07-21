@@ -15,9 +15,11 @@
         android:id="@+id/webview"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="60dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true" >
+
+    </WebView>
 
 
     <ProgressBar
@@ -36,9 +38,11 @@
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-7426325861660851/3421051725">
+        ads:adUnitId="ca-app-pub-7426325861660851/3421051725"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
     </com.google.android.gms.ads.AdView>
+
 
 </RelativeLayout>
