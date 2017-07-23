@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         friend_result_button=(Button)findViewById(R.id.friend_result_button);
         CookieManager.getInstance().setAcceptCookie(true);
 
-
+        friend_result_button.setVisibility(View.GONE);
         //dialog-------------------------------------------
         LayoutInflater li = LayoutInflater.from(context);
         View promptsView = li.inflate(R.layout.prompts, null);
@@ -94,9 +94,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // show it
-                alertDialog.show();
+               if(modUrl.equals("http://www.m.ptuexam.com/frmAnnouncements.aspx" )|| modUrl.equals("http://www.m.ptuexam.com/LoginMe.aspx") || modUrl.equals("http://www.m.ptuexam.com/frmResultTabulation.aspx"))
+               {
+                   Toast.makeText(context, "Please enter in doc first", Toast.LENGTH_SHORT).show();
+               }else {
 
+                   alertDialog.show();
+               }
             }
         });
 
@@ -139,10 +143,24 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onPageFinished(WebView view, String url) {
            modUrl=url.toString();
-            Toast.makeText(MainActivity.this, modUrl, Toast.LENGTH_SHORT).show();
+
 
             super.onPageFinished(view, url);
             bar.setVisibility(View.GONE);
+            if(modUrl.equals("http://www.m.ptuexam.com/frmAnnouncements.aspx" )|| modUrl.equals("http://www.m.ptuexam.com/LoginMe.aspx")|| modUrl.equals("http://www.m.ptuexam.com/frmAnnouncements.aspx#/frmResultTabulation.aspx") || modUrl.equals("http://www.m.ptuexam.com/frmResultTabulation.aspx"))
+            {
+
+                friend_result_button.setVisibility(View.GONE);
+            }else {
+
+                friend_result_button.setVisibility(View.VISIBLE);
+            }
+
+
+
+
+
+
 
 
 
@@ -150,12 +168,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            Toast.makeText(context, url +"page stated" , Toast.LENGTH_LONG).show();
+
             super.onPageStarted(view, url, favicon);
         }
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
+            Toast.makeText(context, url +"overrrider url loading" , Toast.LENGTH_LONG).show();
             view.loadUrl(url);
             return super.shouldOverrideUrlLoading(view, url);
 

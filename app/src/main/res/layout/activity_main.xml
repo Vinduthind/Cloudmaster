@@ -17,7 +17,8 @@
         android:layout_marginRight="5dp"
         android:layout_marginBottom="60dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" >
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true">
 
     </WebView>
 
@@ -41,17 +42,26 @@
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-7426325861660851/3421051725"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/button4">
+        android:layout_alignEnd="@+id/friend_result_button">
     </com.google.android.gms.ads.AdView>
 
-    <Button
-        android:id="@+id/friend_result_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_button"
-        android:text="Friend result"
-        android:layout_alignTop="@+id/adView"
-        android:layout_alignParentEnd="true" />
+
+
+
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="25dp"
+    android:drawableLeft="@mipmap/ic_dns_black_24dp"
+    android:layout_margin="10dp"
+android:textStyle="italic"
+     android:text="Tally"
+    android:background="#30AF99"
+    android:id="@+id/friend_result_button"
+
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true" />
 
 
 </RelativeLayout>
+
+
