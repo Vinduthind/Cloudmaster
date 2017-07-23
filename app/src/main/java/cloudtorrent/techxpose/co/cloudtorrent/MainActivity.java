@@ -94,13 +94,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-               if(modUrl.equals("http://www.m.ptuexam.com/frmAnnouncements.aspx" )|| modUrl.equals("http://www.m.ptuexam.com/LoginMe.aspx") || modUrl.equals("http://www.m.ptuexam.com/frmResultTabulation.aspx"))
-               {
-                   Toast.makeText(context, "Please enter in doc first", Toast.LENGTH_SHORT).show();
-               }else {
+
 
                    alertDialog.show();
-               }
+
             }
         });
 
@@ -147,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
             super.onPageFinished(view, url);
             bar.setVisibility(View.GONE);
-            if(modUrl.equals("http://www.m.ptuexam.com/frmAnnouncements.aspx" )|| modUrl.equals("http://www.m.ptuexam.com/LoginMe.aspx")|| modUrl.equals("http://www.m.ptuexam.com/frmAnnouncements.aspx#/frmResultTabulation.aspx") || modUrl.equals("http://www.m.ptuexam.com/frmResultTabulation.aspx"))
+          /*  if(modUrl.equals("http://www.m.ptuexam.com/frmAnnouncements.aspx" )|| modUrl.equals("http://www.m.ptuexam.com/LoginMe.aspx")|| modUrl.equals("http://www.m.ptuexam.com/frmAnnouncements.aspx#/frmResultTabulation.aspx") || modUrl.equals("http://www.m.ptuexam.com/frmResultTabulation.aspx"))
             {
 
                 friend_result_button.setVisibility(View.GONE);
@@ -155,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
                 friend_result_button.setVisibility(View.VISIBLE);
             }
-
+*/
 
 
 
@@ -168,14 +165,27 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            Toast.makeText(context, url +"page stated" , Toast.LENGTH_LONG).show();
+            String modUrlCheck = url.toString();
+
+            if(modUrlCheck.equals("http://www.m.ptuexam.com/frmAnnouncements.aspx" )
+                    || modUrlCheck.equals("http://www.m.ptuexam.com/LoginMe.aspx")
+                    || modUrlCheck.equals("http://www.m.ptuexam.com/frmAnnouncements.aspx#/frmResultTabulation.aspx")
+                    || modUrlCheck.equals("http://www.m.ptuexam.com/frmResultTabulation.aspx"))
+            {
+
+                friend_result_button.setVisibility(View.GONE);
+            }else {
+
+                friend_result_button.setVisibility(View.VISIBLE);
+            }
+
 
             super.onPageStarted(view, url, favicon);
         }
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            Toast.makeText(context, url +"overrrider url loading" , Toast.LENGTH_LONG).show();
+
             view.loadUrl(url);
             return super.shouldOverrideUrlLoading(view, url);
 

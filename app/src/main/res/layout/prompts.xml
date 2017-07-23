@@ -6,12 +6,16 @@
     android:layout_margin="50dp">
     <TextView
         android:id="@+id/t"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#ffff"
-        android:text="\t\t\t\t\t\tInfo. Required\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n "
+        android:textStyle="italic"
+
+        android:text="\tInfo. Required\n "
         android:background="#30AF99"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
