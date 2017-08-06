@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         webview.setWebViewClient(new myclient());
         friend_result_button=(Button)findViewById(R.id.friend_result_button);
         CookieManager.getInstance().setAcceptCookie(true);
-
         friend_result_button.setVisibility(View.GONE);
         //dialog-------------------------------------------
         LayoutInflater li = LayoutInflater.from(context);
@@ -73,8 +72,34 @@ public class MainActivity extends AppCompatActivity {
                                 // edit text
                             current_roll= current_roll_field.getText().toString();
                             replace_roll = replace_roll_field.getText().toString();
-                                String newString = modUrl.replace(current_roll, replace_roll);
-                                webview.loadUrl(newString);
+                                if(modUrl.indexOf(current_roll)!=-1) {
+
+                                    if (current_roll.isEmpty() || replace_roll.isEmpty())
+                                    {
+                                        Toast.makeText(context, "Both fields are mandatory", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else{
+                                    String newString = modUrl.replace(current_roll, replace_roll);
+                                    webview.loadUrl(newString);
+                                    Toast.makeText(context, "Roll no : " + replace_roll + " loading....", Toast.LENGTH_LONG).show();
+                                    current_roll_field.setText(replace_roll);
+                                    replace_roll_field.setText("");
+                                }
+
+                                }
+                                else
+                                {
+                                    if (current_roll.isEmpty() || replace_roll.isEmpty())
+                                    {
+                                        Toast.makeText(context, "Both fields are mandatory", Toast.LENGTH_SHORT).show();
+                                    }else
+                                    {
+                                    Toast.makeText(context, "Please check current Roll no.", Toast.LENGTH_SHORT).show();
+                                    current_roll_field.setText(current_roll);
+                                    replace_roll_field.setText("");
+                                    }
+                                }
+
 
                             }
                         })
@@ -173,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
                     || modUrlCheck.equals("http://www.m.ptuexam.com/frmResultTabulation.aspx"))
             {
 
-                friend_result_button.setVisibility(View.GONE);
+             friend_result_button.setVisibility(View.GONE);
             }else {
 
                 friend_result_button.setVisibility(View.VISIBLE);
@@ -203,5 +228,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onKeyDown(keyCode, event);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+     if (friend_result_button.getVisibility() == View.VISIBLE)
+     {
+
+
+     }
+
+        super.onBackPressed();
     }
 }
