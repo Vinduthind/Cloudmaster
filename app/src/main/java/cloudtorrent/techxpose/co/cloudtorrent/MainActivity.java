@@ -27,9 +27,11 @@ public class MainActivity extends AppCompatActivity {
     final Context context = this;
     WebView webview;
     ProgressBar bar;
+     EditText current_roll_field;
      AdView mAdView;
     String current_roll,replace_roll;
     Button friend_result_button;
+    String modUrlCheck;
     String modUrl = "http://www.m.ptuexam.com/LoginMe.aspx";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         // set prompts.xml to alertdialog builder
         alertDialogBuilder.setView(promptsView);
-
-        final EditText current_roll_field = (EditText) promptsView
+         current_roll_field = (EditText) promptsView
                 .findViewById(R.id.editTextDialogUserInput);
 
         final EditText replace_roll_field = (EditText) promptsView
@@ -185,12 +186,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
         }
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            String modUrlCheck = url.toString();
+            modUrlCheck = url.toString();
 
             if(modUrlCheck.equals("http://www.m.ptuexam.com/frmAnnouncements.aspx" )
                     || modUrlCheck.equals("http://www.m.ptuexam.com/LoginMe.aspx")
@@ -221,8 +221,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if((keyCode==KeyEvent.KEYCODE_BACK)&&webview.canGoBack()){
+            if (friend_result_button.getVisibility() == View.VISIBLE) {
+                Toast.makeText(context, "Online Tabulation Loading...", Toast.LENGTH_SHORT).show();
+                webview.loadUrl("http://www.m.ptuexam.com/frmResultTabulation.aspx");
+          current_roll_field.setText("");
+            }
 
-            webview.goBack();
+
+            else
+                {
+
+                webview.goBack();
+            }
+
             return true;
 
         }
@@ -231,14 +242,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onBackPressed() {
-     if (friend_result_button.getVisibility() == View.VISIBLE)
-     {
 
-
-     }
-
-        super.onBackPressed();
-    }
 }
